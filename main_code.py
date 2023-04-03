@@ -10,7 +10,7 @@ rank=('Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack',
 
 playing = True
 
-# hello
+
 class Card:
     
     def __init__(self,suit,rank):
