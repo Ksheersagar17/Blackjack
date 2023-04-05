@@ -6,6 +6,8 @@ def goin():
     root.destroy()
     gamePage.gameUI()
     
+def goout():
+    root.destroy()
 
 root = Tk()
 
@@ -30,7 +32,7 @@ photoimage = ImageTk.PhotoImage(res_img)
 canvas.create_image(250, 200, image=photoimage)
 
 b1 = Button(root, text='Start', font=(40), height=1, width=15, command= goin)
-b2 = Button(root, text='Exit', font=(40), height=1, width=15)
+b2 = Button(root, text='Exit', font=(40), height=1, width=15, command = goout)
 
 b1.place(x=530, y=120)
 b2.place(x=530, y=190)
