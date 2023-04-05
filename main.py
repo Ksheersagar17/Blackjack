@@ -4,7 +4,7 @@ from PIL import ImageTk,Image
 root = Tk()
 
 root.resizable(width= False, height= False)
-WW = 600
+WW = 750
 WH = 400
 SW = root.winfo_screenwidth()
 SH = root.winfo_screenheight()
@@ -14,16 +14,19 @@ root.geometry('%dx%d+%d+%d' %(WW, WH, x, y))
 root.title('Blackjack')
 root.config(bg='green')
 
+ic = Image.open('assets/logo.png')
+res_img = ic.resize((400,300))
 
-l1 = Label(root, text='BlackJack', bg='green', font=('ROG Fonts', 30))
-l1.place(x=160, y=10)
+canvas = Canvas(root, bg="green", width=900, height=500)
+canvas.place(x=0, y=0)
+
+photoimage = ImageTk.PhotoImage(res_img)
+canvas.create_image(250, 200, image=photoimage)
 
 b1 = Button(root, text='Start', font=(40), height=1, width=15)
 b2 = Button(root, text='Exit', font=(40), height=1, width=15)
 
-b1.place(x=220, y=120)
-b2.place(x=220, y=190)
-
-
+b1.place(x=530, y=120)
+b2.place(x=530, y=190)
 
 root.mainloop()
