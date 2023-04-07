@@ -10,7 +10,6 @@ def goout():
     root.destroy()
 
 root = Tk()
-
 root.resizable(width= False, height= False)
 WW = 750
 WH = 400
