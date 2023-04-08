@@ -28,6 +28,7 @@ class Deck:
             for ranks in rank:
                 created_cards=Card(suits,ranks)
                 self.deck.append(created_cards)
+
     def __str__(self):
         deck_comp = ''
         for card in self.deck:
@@ -160,11 +161,11 @@ while True:
     deck = Deck()
     deck.shuffle()
     
-    player_hand = Hand()
+    player_hand = Hand()  #The player's hand storage
     player_hand.add_cards(deck.deal())
     player_hand.add_cards(deck.deal())
     
-    dealer_hand = Hand()
+    dealer_hand = Hand()  #Thbe dealer's hand storage
     dealer_hand.add_cards(deck.deal())
     dealer_hand.add_cards(deck.deal())
     
@@ -174,13 +175,17 @@ while True:
     
     show_some(player_hand,dealer_hand)
     
-    while playing:
-        hit_or_stand(deck,player_hand)
-        show_some(player_hand,dealer_hand)
+    while playing: # recall this variable from our hit_or_stand function
         
+        hit_or_stand(deck,player_hand)  # Prompt for Player to Hit or Stand
+        show_some(player_hand,dealer_hand)  # Show cards (but keep one dealer card hidden)
+        
+        # If player's hand exceeds 21, run player_busts() and break out of loop
         if player_hand.value > 21:
             player_busts(player_hand,dealer_hand,player_chips)
             break
+
+    # If Player hasn't busted, play Dealer's hand until Dealer reaches 17
     if player_hand.value <= 21:
         
         while dealer_hand.value < 17:
@@ -201,7 +206,7 @@ while True:
     
     new_game = input("Would you like to play again? Enter y or n")
     
-    if new_game.lower == 'y':
+    if new_game[0].lower() == 'y':
         playing = True
         continue
     else:

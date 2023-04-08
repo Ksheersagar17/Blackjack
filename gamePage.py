@@ -45,3 +45,5 @@ def gameUI():
     pc_canvas2.create_image(40, 50, image=pc_photoimage2)
 
     gp.mainloop()
+
+# gameUI()
