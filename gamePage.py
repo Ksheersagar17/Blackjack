@@ -29,14 +29,14 @@ def gameUI():
     photoimage2 = ImageTk.PhotoImage(res_img2)
     canvas2.create_image(60, 60, image=photoimage2)
 
-    pc1 = Image.open('assets/Clubs/1C.png')
+    pc1 = Image.open('assets/Clubs/A.png')
     pc_res_img1 = pc1.resize((80,100))
     pc_canvas1 = Canvas(gp, bg="white", width=75, height=95)
     pc_canvas1.place(x=200, y=250)
     pc_photoimage1 = ImageTk.PhotoImage(pc_res_img1)
     pc_canvas1.create_image(40, 50, image=pc_photoimage1)
 
-    pc2 = Image.open('assets/Clubs/1C.png')
+    pc2 = Image.open('assets/Clubs/A.png')
     pc_res_img2 = pc2.resize((80,100))
     pc_canvas2 = Canvas(gp, bg="white", width=75, height=95)
     pc_canvas2.place(x=300, y=250)
@@ -44,5 +44,4 @@ def gameUI():
     pc_canvas2.create_image(40, 50, image=pc_photoimage2)
 
     gp.mainloop()
-
-# gameUI()
+    #gameUI()
