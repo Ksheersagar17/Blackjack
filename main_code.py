@@ -19,7 +19,7 @@ class Card:
     
     def __str__(self):
         return self.rank + " of " + self.suit
-
+    
 class Deck:
     def __init__(self):
         self.deck=[]
@@ -201,7 +201,11 @@ while True:
             dealer_wins(player_hand,dealer_hand,player_chips)
         else:
             push(player_hand,dealer_hand)
-            
+    
+    
+    # for card in player_hand.cards:
+    #     print(card)
+    
     print("\n Player total chips are at: {}".format(player_chips.total))
     
     new_game = input("Would you like to play again? Enter y or n")
