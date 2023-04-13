@@ -1,5 +1,6 @@
 import random
 import main
+import threading
 
 values={'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':10,'Q':10,'K':10,'A':11}
 
@@ -71,10 +72,11 @@ class Chips:
     def lose_bet(self):
         self.total -= self.bet
 
+
 def take_bet(chips):
     while True:
         try:
-            chips.bet = int(input("How many chips would you like to bet:"))
+            chips.bet = int(input("How many chips would you like to bet: "))
         except:
             print("Sorry please provide an integer....")
         else:
@@ -153,11 +155,13 @@ def dealer_wins(player,dealer,chips):
 def push(player,dealer):
     print("Player and Dealer tie... PUSH!!")
 
+
 while True:
-    
     print("WELCOME TO BLACKJACK!!!")
-    main.gameon()
     
+    thread1 = threading.Thread(target=main.gameon)
+    thread1.start()
+
     deck = Deck()
     deck.shuffle()
     
