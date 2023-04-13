@@ -1,2 +1,2 @@
-ic = Image.open('assets/logo.png')
-res_img = ic.resize((400,300))
+hread1 = threading.Thread(target=main.gameon)
+    thread1.start()

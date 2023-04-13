@@ -1,16 +1,16 @@
 from tkinter import *
 from PIL import ImageTk,Image
-import gamePage
+import gamePage, main_code
 
 def goin(root):
-    root.destroy()
-    gamePage.gameUI()
+    main_code.start()
+    # root.destroy()
+    # gamePage.gameUI()
     
 def goout(root):
     root.destroy()
 
 def gameon():
-    
     root = Tk()
     root.resizable(width= False, height= False)
     WW = 750
