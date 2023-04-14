@@ -1,9 +1,65 @@
 from tkinter import *
+from tkinter import messagebox
 from PIL import ImageTk,Image
-import main_code
+import main_code, main
 
-def HIT(deck, hand):
+def result(player_hand, dealer_hand, gp):
+    if dealer_hand.value > 21:
+        messagebox.showinfo(message='Dealer Bust !!  PLAYER WINS')
+        # dealer_busts(player_hand,dealer_hand,player_chips)
+    elif player_hand.value > 21:
+        messagebox.showinfo(message='DEALER WINS!  BUST PLAYER!!')
+    elif player_hand.value > dealer_hand.value:
+        messagebox.showinfo(message='PLAYER WINS !!')
+        # player_wins(player_hand,dealer_hand,player_chips)
+    elif dealer_hand.value > player_hand.value:
+        messagebox.showinfo(message='DEALER WINS !!')
+        # dealer_wins(player_hand,dealer_hand,player_chips)
+    else:
+        messagebox.showinfo(message='Player and Dealer tie... PUSH!!')
+        # push(player_hand,dealer_hand)
+    
+    gp.destroy()
+    main.start()
+    
+
+def HIT(deck, hand, dealer_hand, gp):
     main_code.hit(deck, hand)
+    main_code.show_some(hand, dealer_hand, gp)
+    
+    if hand.value <= 21:
+        while dealer_hand.value < 17:
+            main_code.hit(deck, dealer_hand)
+    else:
+        result(hand, dealer_hand, gp)
+        
+    
+def STAND(player_hand, dealer_hand, deck, gp):
+    print(player_hand.value)
+    print(dealer_hand.value)
+    if player_hand.value <= 21:
+        if dealer_hand.value < 17:
+            main_code.hit(deck, dealer_hand)
+        
+    main_code.show_all(player_hand, dealer_hand, gp)
+    # result()
+    
+    # if player_hand.value <= 21:
+        # while dealer_hand.value < 17:
+    #         main_code.hit(deck,dealer_hand)
+        
+    #     main_code.show_all(player_hand,dealer_hand)
+        
+    #     if dealer_hand.value > 21:
+    #         main_code.dealer_busts(player_hand,dealer_hand, main_code.player_chips)
+    #     elif player_hand.value > dealer_hand.value:
+    #         main_code.player_wins(player_hand,dealer_hand, main_code.player_chips)
+    #     elif dealer_hand.value > player_hand.value:
+    #         main_code.dealer_wins(player_hand,dealer_hand, main_code.player_chips)
+    #     else:
+    #         main_code.push(player_hand,dealer_hand)
+    
+    
 
 def gameUI(player_hand, dealer_hand, deck):
     gp = Tk()
@@ -18,9 +74,9 @@ def gameUI(player_hand, dealer_hand, deck):
     gp.title('Blackjack')
     gp.config(bg='green')
 
-    bt1 = Button(gp, text='Hit', font=(20), width=5, command= lambda: HIT(deck, player_hand))
-    bt2 = Button(gp, text='Stand', font=(20), width=5)
-    bt3 = Button(gp, text='Exit', font=(20), width=5)
+    bt1 = Button(gp, text='Hit', font=(20), width=5, command= lambda: HIT(deck, player_hand, dealer_hand, gp))
+    bt2 = Button(gp, text='Stand', font=(20), width=5, command= lambda: STAND(player_hand, dealer_hand, deck, gp))
+    bt3 = Button(gp, text='Exit', font=(20), width=5, command= exit)
     bt1.pack(side=RIGHT, padx=10, pady=40)
     bt2.pack(side=RIGHT, padx=10, pady=40)
     bt3.pack(side=RIGHT, padx=10, pady=40)

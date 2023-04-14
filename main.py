@@ -114,6 +114,9 @@ def goin(root):
 
 def goout(root):
     root.destroy()
+    
+def start():
+    gameon()
 
 def gameon():
     root = Tk()
@@ -144,5 +147,3 @@ def gameon():
     b2.place(x=530, y=190)
 
     root.mainloop()
-    
-gameon()

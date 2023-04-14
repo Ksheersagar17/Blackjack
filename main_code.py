@@ -1,6 +1,7 @@
 import random
 from tkinter import *
 from PIL import ImageTk,Image
+import gamePage
 
 values={'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':10,'Q':10,'K':10,'A':11}
 suit=('Hearts','Diamonds','Clubs','Spade')
@@ -101,7 +102,7 @@ def hit_or_stand(deck,hand):
             continue
         break
 
-def cardReload(gp, player, dealer):
+def cardReloadSome(gp, player, dealer):
     dealerfrm = Frame(gp)
     dealerfrm.configure(background='green')
     dealerfrm.place(x=200, y=50)
@@ -110,11 +111,52 @@ def cardReload(gp, player, dealer):
     playerfrm.configure(background='green')
     playerfrm.place(x=200, y=235)
 
-    lst = ['assets/Clubs/2.png', 'assets/Hearts/A.png', 'assets/Spade/5.png']
     lab_lst = [0]*5
     pc=[0]*5
     r = 0
+    
+    pc[r] = Image.open('assets/B.png')
+    pc_res_img1 = pc[r].resize((80,100))
+    pc[r] = ImageTk.PhotoImage(pc_res_img1)
+    lab_lst[r] = Label(dealerfrm, image=pc[r])
+    lab_lst[r].grid(column=r,row=0)
+    r = r+1
 
+    for i in dealer.cards[1:]:
+        print(f'-> {i}')
+        pc[r] = Image.open(str(i))
+        pc_res_img1 = pc[r].resize((80,100))
+        pc[r] = ImageTk.PhotoImage(pc_res_img1)
+        lab_lst[r] = Label(dealerfrm, image=pc[r])
+        lab_lst[r].grid(column=r,row=0)
+        r = r+1
+
+    for i in player.cards:
+        print(f'-> {i}')
+        pc[r] = Image.open(str(i))
+        pc_res_img1 = pc[r].resize((80,100))
+        pc[r] = ImageTk.PhotoImage(pc_res_img1)
+        lab_lst[r] = Label(playerfrm, image=pc[r])
+        lab_lst[r].grid(column=r,row=0)
+        r = r+1
+    
+    gp.mainloop()
+    
+    
+
+def cardReloadAll(gp, player, dealer):
+    dealerfrm = Frame(gp)
+    dealerfrm.configure(background='green')
+    dealerfrm.place(x=200, y=50)
+
+    playerfrm = Frame(gp)
+    playerfrm.configure(background='green')
+    playerfrm.place(x=200, y=235)
+
+    lab_lst = [0]*5
+    pc=[0]*5
+    r = 0
+    
     for i in dealer.cards:
         print(f'-> {i}')
         pc[r] = Image.open(str(i))
@@ -132,6 +174,8 @@ def cardReload(gp, player, dealer):
         lab_lst[r] = Label(playerfrm, image=pc[r])
         lab_lst[r].grid(column=r,row=0)
         r = r+1
+        
+    gamePage.result(player, dealer, gp)
 
     gp.mainloop()
 
@@ -151,7 +195,7 @@ def show_some(player,dealer, gp):
     canvas2.place(x=30, y=230)
     photoimage2 = ImageTk.PhotoImage(res_img2)
     canvas2.create_image(60, 60, image=photoimage2)
-    cardReload(gp, player, dealer)
+    cardReloadSome(gp, player, dealer)
 
     print("\n Dealer's hand")
     print("First card hidden")
@@ -164,12 +208,23 @@ def show_some(player,dealer, gp):
 
 
 
-def show_all(player,dealer):
+def show_all(player, dealer, gp):
     #Show all the dealer's cards
+    ic1 = Image.open('assets/dealer.png')
+    res_img1 = ic1.resize((100,100))
+    canvas1 = Canvas(gp, bg="green", width=120, height=120)
+    canvas1.place(x=30, y=30)
+    photoimage1 = ImageTk.PhotoImage(res_img1)
+    canvas1.create_image(60, 60, image=photoimage1)
 
-    print("\n Dealer's hand:")
-    for card in dealer.cards:
-        print(card)
+    ic2 = Image.open('assets/man.png')
+    res_img2 = ic2.resize((100,100))
+    canvas2 = Canvas(gp, bg="green", width=120, height=120)
+    canvas2.place(x=30, y=230)
+    photoimage2 = ImageTk.PhotoImage(res_img2)
+    canvas2.create_image(60, 60, image=photoimage2)
+    
+    cardReloadAll(gp, player, dealer)
 
     # Calculate and display the value
     print(f"Value of Dealer's hand is : {dealer.value}")
@@ -180,6 +235,9 @@ def show_all(player,dealer):
         print(card)
 
     print(f"Value of player's hand is : {player.value}")
+    
+    
+    
 
 def player_busts(player,dealer,chips):
     print("BUST PLAYER!")
@@ -231,21 +289,21 @@ def push(player,dealer):
 #             break
 
 #     # If Player hasn't busted, play Dealer's hand until Dealer reaches 17
-#     if player_hand.value <= 21:
+    # if player_hand.value <= 21:
         
-#         while dealer_hand.value < 17:
-#             hit(deck,dealer_hand)
+    #     while dealer_hand.value < 17:
+    #         hit(deck,dealer_hand)
         
-#         show_all(player_hand,dealer_hand)
+    #     show_all(player_hand,dealer_hand)
         
-#         if dealer_hand.value > 21:
-#             dealer_busts(player_hand,dealer_hand,player_chips)
-#         elif player_hand.value > dealer_hand.value:
-#             player_wins(player_hand,dealer_hand,player_chips)
-#         elif dealer_hand.value > player_hand.value:
-#             dealer_wins(player_hand,dealer_hand,player_chips)
-#         else:
-#             push(player_hand,dealer_hand)
+        # if dealer_hand.value > 21:
+        #     dealer_busts(player_hand,dealer_hand,player_chips)
+        # elif player_hand.value > dealer_hand.value:
+        #     player_wins(player_hand,dealer_hand,player_chips)
+        # elif dealer_hand.value > player_hand.value:
+        #     dealer_wins(player_hand,dealer_hand,player_chips)
+        # else:
+        #     push(player_hand,dealer_hand)
     
     
 #     # for card in player_hand.cards:
