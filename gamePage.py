@@ -29,6 +29,8 @@ def gameUI():
     photoimage2 = ImageTk.PhotoImage(res_img2)
     canvas2.create_image(60, 60, image=photoimage2)
 
+    
+    
     playerfrm = Frame(gp)
     playerfrm.configure(background='green')
     playerfrm.place(x=200, y=235)
