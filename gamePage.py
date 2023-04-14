@@ -1,11 +1,14 @@
 from tkinter import *
 from PIL import ImageTk,Image
+import main_code
 
-def gameUI():
+def HIT(deck, hand):
+    main_code.hit(deck, hand)
+
+def gameUI(player_hand, dealer_hand, deck):
     gp = Tk()
-
     gp.resizable(width= False, height= False)
-    WW = 750
+    WW = 900
     WH = 400
     SW = gp.winfo_screenwidth()
     SH = gp.winfo_screenheight()
@@ -14,7 +17,16 @@ def gameUI():
     gp.geometry('%dx%d+%d+%d' %(WW, WH, x, y))
     gp.title('Blackjack')
     gp.config(bg='green')
+    
+    bt1 = Button(gp, text='Hit', font=(20), width=5, command=HIT)
+    bt2 = Button(gp, text='Stand', font=(20), width=5)
+    bt3 = Button(gp, text='Exit', font=(20), width=5)
+    bt1.pack(side=RIGHT, padx=10, pady=40)
+    bt2.pack(side=RIGHT, padx=10, pady=40)
+    bt3.pack(side=RIGHT, padx=10, pady=40)
 
+    main_code.show_some(player_hand, dealer_hand, gp)
+    
     ic1 = Image.open('assets/dealer.png')
     res_img1 = ic1.resize((100,100))
     canvas1 = Canvas(gp, bg="green", width=120, height=120)
@@ -33,30 +45,6 @@ def gameUI():
     playerfrm.configure(background='green')
     playerfrm.place(x=200, y=235)
     
-    lst = ['assets/Clubs/A.png', 'assets/Hearts/A.png', 'assets/Spade/A.png']
-    
-    for i in lst:
-        pc1 = Image.open(i)
-        pc_res_img1 = pc1.resize((80,100))
-        pc_canvas1 = Canvas(playerfrm, bg="white", width=75, height=95)
-        pc_canvas1.pack(padx=10, pady=10, side=LEFT)
-        pc_photoimage1 = ImageTk.PhotoImage(pc_res_img1)
-        pc_canvas1.create_image(40, 50, image=pc_photoimage1)
-    
-    # pc1 = Image.open('assets/Clubs/A.png')
-    # pc_res_img1 = pc1.resize((80,100))
-    # pc_canvas1 = Canvas(playerfrm, bg="white", width=75, height=95)
-    # pc_canvas1.pack(padx=10, pady=10, side=LEFT)
-    # pc_photoimage1 = ImageTk.PhotoImage(pc_res_img1)
-    # pc_canvas1.create_image(40, 50, image=pc_photoimage1)
-
-    # pc2 = Image.open('assets/Clubs/A.png')
-    # pc_res_img2 = pc2.resize((80,100))
-    # pc_canvas2 = Canvas(playerfrm, bg="white", width=75, height=95)
-    # pc_canvas2.pack(padx=10, pady=10, side=LEFT)
-    # pc_photoimage2 = ImageTk.PhotoImage(pc_res_img2)
-    # pc_canvas2.create_image(40, 50, image=pc_photoimage2)
-
     gp.mainloop()
 
-# gameUI()
+# gameUI(lst1, lst2)
