@@ -4,7 +4,7 @@ from PIL import ImageTk,Image
 def gameUI():
     gp = Tk()
 
-    gp.resizable(width= False, height= False)
+    # gp.resizable(width= False, height= False)
     WW = 750
     WH = 400
     SW = gp.winfo_screenwidth()
@@ -33,15 +33,17 @@ def gameUI():
     playerfrm.configure(background='green')
     playerfrm.place(x=200, y=235)
     
-    lst = ['assets/Clubs/A.png', 'assets/Hearts/A.png', 'assets/Spade/A.png']
-    
+    lst = ['assets/Clubs/2.png', 'assets/Hearts/A.png', 'assets/Spade/5.png']
+    lab_lst = [0]*5
+    pc=[0]*5
+    r = 0
     for i in lst:
-        pc1 = Image.open(i)
-        pc_res_img1 = pc1.resize((80,100))
-        pc_canvas1 = Canvas(playerfrm, bg="white", width=75, height=95)
-        pc_canvas1.pack(padx=10, pady=10, side=LEFT)
-        pc_photoimage1 = ImageTk.PhotoImage(pc_res_img1)
-        pc_canvas1.create_image(40, 50, image=pc_photoimage1)
+        pc[r] = Image.open(i)
+        pc_res_img1 = pc[r].resize((80,100))
+        pc[r] = ImageTk.PhotoImage(pc_res_img1)
+        lab_lst[r] = Label(playerfrm, image=pc[r])
+        lab_lst[r].grid(column=r,row=0)
+        r = r+1
     
     # pc1 = Image.open('assets/Clubs/A.png')
     # pc_res_img1 = pc1.resize((80,100))
@@ -59,4 +61,4 @@ def gameUI():
 
     gp.mainloop()
 
-# gameUI()
+gameUI()
