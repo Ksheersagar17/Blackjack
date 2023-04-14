@@ -17,8 +17,8 @@ def gameUI(player_hand, dealer_hand, deck):
     gp.geometry('%dx%d+%d+%d' %(WW, WH, x, y))
     gp.title('Blackjack')
     gp.config(bg='green')
-    
-    bt1 = Button(gp, text='Hit', font=(20), width=5, command=HIT)
+
+    bt1 = Button(gp, text='Hit', font=(20), width=5, command= lambda: HIT(deck, player_hand))
     bt2 = Button(gp, text='Stand', font=(20), width=5)
     bt3 = Button(gp, text='Exit', font=(20), width=5)
     bt1.pack(side=RIGHT, padx=10, pady=40)
@@ -26,7 +26,7 @@ def gameUI(player_hand, dealer_hand, deck):
     bt3.pack(side=RIGHT, padx=10, pady=40)
 
     main_code.show_some(player_hand, dealer_hand, gp)
-    
+
     ic1 = Image.open('assets/dealer.png')
     res_img1 = ic1.resize((100,100))
     canvas1 = Canvas(gp, bg="green", width=120, height=120)
