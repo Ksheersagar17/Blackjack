@@ -24,13 +24,18 @@ def result(player_hand, dealer_hand, gp):
     
 
 def HIT(deck, hand, dealer_hand, gp):
+    print("Hello I am inside of HIT")
     main_code.hit(deck, hand)
     main_code.show_some(hand, dealer_hand, gp)
     
+    print(f"Value of hand {hand.value}")
+
     if hand.value <= 21:
+        print("Hello I am here 1")
         while dealer_hand.value < 17:
             main_code.hit(deck, dealer_hand)
     else:
+        print("Hello I am here 2")
         result(hand, dealer_hand, gp)
         
     
@@ -42,24 +47,6 @@ def STAND(player_hand, dealer_hand, deck, gp):
             main_code.hit(deck, dealer_hand)
         
     main_code.show_all(player_hand, dealer_hand, gp)
-    # result()
-    
-    # if player_hand.value <= 21:
-        # while dealer_hand.value < 17:
-    #         main_code.hit(deck,dealer_hand)
-        
-    #     main_code.show_all(player_hand,dealer_hand)
-        
-    #     if dealer_hand.value > 21:
-    #         main_code.dealer_busts(player_hand,dealer_hand, main_code.player_chips)
-    #     elif player_hand.value > dealer_hand.value:
-    #         main_code.player_wins(player_hand,dealer_hand, main_code.player_chips)
-    #     elif dealer_hand.value > player_hand.value:
-    #         main_code.dealer_wins(player_hand,dealer_hand, main_code.player_chips)
-    #     else:
-    #         main_code.push(player_hand,dealer_hand)
-    
-    
 
 def gameUI(player_hand, dealer_hand, deck):
     gp = Tk()
@@ -103,4 +90,4 @@ def gameUI(player_hand, dealer_hand, deck):
     
     gp.mainloop()
 
-# gameUI(lst1, lst2)
+
