@@ -43,7 +43,7 @@ def backCode(root, msg, b):
     player_hand.add_cards(deck.deal())
     player_hand.add_cards(deck.deal())
     
-    dealer_hand = main_code.Hand()  #Thbe dealer's hand storage
+    dealer_hand = main_code.Hand()  #The dealer's hand storage
     dealer_hand.add_cards(deck.deal())
     dealer_hand.add_cards(deck.deal())
     
@@ -52,40 +52,6 @@ def backCode(root, msg, b):
     main_code.take_bet(player_chips, b)
     
     gamePage.gameUI(player_hand, dealer_hand, deck)
-    
-    
-    # while main_code.playing: # recall this variable from our hit_or_stand function
-        
-    #     main_code.hit_or_stand(deck,player_hand)  # Prompt for Player to Hit or Stand
-    #     main_code.show_some(player_hand,dealer_hand)  # Show cards (but keep one dealer card hidden)
-        
-    #     # If player's hand exceeds 21, run player_busts() and break out of loop
-    #     if player_hand.value > 21:
-    #         main_code.player_busts(player_hand,dealer_hand,player_chips)
-    #         break
-
-    # # If Player hasn't busted, play Dealer's hand until Dealer reaches 17
-    # if player_hand.value <= 21:
-        
-    #     while dealer_hand.value < 17:
-    #         main_code.hit(deck,dealer_hand)
-        
-    #     main_code.show_all(player_hand,dealer_hand)
-        
-    #     if dealer_hand.value > 21:
-    #         main_code.dealer_busts(player_hand,dealer_hand,player_chips)
-    #     elif player_hand.value > dealer_hand.value:
-    #         main_code.player_wins(player_hand,dealer_hand,player_chips)
-    #     elif dealer_hand.value > player_hand.value:
-    #         main_code.dealer_wins(player_hand,dealer_hand,player_chips)
-    #     else:
-    #         main_code.push(player_hand,dealer_hand)
-    
-    # print('---------------------------------------------')
-    # # for card in player_hand.cards:
-    # #     print(card)
-    
-    # print("\n Player total chips are at: {}".format(player_chips.total))
 
 def cont(msg, root, b):
     backCode(root, msg, b)
@@ -101,7 +67,6 @@ def goin(root):
     x = SW/2 - WW/2
     y = SH/2 - WH/2
     msg.geometry('%dx%d+%d+%d' %(WW, WH, x, y))
-    # msg.geometry('400x150')
     l = Label(msg, text='Enter your Bet : ', font=(20))
     l.place(x=40, y= 40)
     ent = Entry(msg, font=(20))
